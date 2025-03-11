@@ -9,7 +9,7 @@ const ExtensionPopup = () => {
   const { loading } = useBookmarks();
 
   return (
-    <div className="w-[360px] p-4 bg-white">
+    <div className="w-[360px] h-[600px] p-4 bg-white overflow-auto">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Bookmark className="h-5 w-5 text-blue-600" />
