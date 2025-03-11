@@ -34,5 +34,4 @@ declare namespace chrome {
   }
 }
 
-// No need to redeclare in global scope as the Chrome namespace
-// is already globally available in extension contexts
+// Chrome namespace is already globally available in extension contexts
