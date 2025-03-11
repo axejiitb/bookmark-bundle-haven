@@ -28,14 +28,13 @@ const CATEGORIES_KEY = 'bookmark_bundle_categories';
 
 // Initialize storage
 const initializeStorage = async (): Promise<void> => {
-  const { categories } = await chrome.storage.local.get(CATEGORIES_KEY);
+  const data = await chrome.storage.local.get([CATEGORIES_KEY, BOOKMARKS_KEY]);
   
-  if (!categories || categories.length === 0) {
+  if (!data[CATEGORIES_KEY]) {
     await chrome.storage.local.set({ [CATEGORIES_KEY]: defaultCategories });
   }
   
-  const { bookmarks } = await chrome.storage.local.get(BOOKMARKS_KEY);
-  if (!bookmarks) {
+  if (!data[BOOKMARKS_KEY]) {
     await chrome.storage.local.set({ [BOOKMARKS_KEY]: [] });
   }
 };
@@ -43,15 +42,15 @@ const initializeStorage = async (): Promise<void> => {
 // Get all bookmarks
 export const getBookmarks = async (): Promise<Bookmark[]> => {
   await initializeStorage();
-  const { [BOOKMARKS_KEY]: bookmarks } = await chrome.storage.local.get(BOOKMARKS_KEY);
-  return bookmarks || [];
+  const data = await chrome.storage.local.get(BOOKMARKS_KEY);
+  return data[BOOKMARKS_KEY] || [];
 };
 
 // Get all categories
 export const getCategories = async (): Promise<Category[]> => {
   await initializeStorage();
-  const { [CATEGORIES_KEY]: categories } = await chrome.storage.local.get(CATEGORIES_KEY);
-  return categories || defaultCategories;
+  const data = await chrome.storage.local.get(CATEGORIES_KEY);
+  return data[CATEGORIES_KEY] || defaultCategories;
 };
 
 // Add a new bookmark

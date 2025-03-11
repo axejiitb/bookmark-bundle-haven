@@ -2,14 +2,17 @@
 // Type definitions for Chrome extension API
 interface Chrome {
   tabs: {
-    query: (queryInfo: {active: boolean, currentWindow: boolean}, callback: (tabs: {url: string, title: string}[]) => void) => void;
-    create: (createProperties: {url: string}) => void;
+    query: (queryInfo: {
+      active: boolean;
+      currentWindow: boolean;
+    }) => Promise<chrome.tabs.Tab[]>;
+    create: (createProperties: { url: string }) => Promise<chrome.tabs.Tab>;
   };
   storage: {
     local: {
-      get: (keys: string | string[] | null, callback: (items: {[key: string]: any}) => void) => void;
-      set: (items: {[key: string]: any}, callback?: () => void) => void;
-      remove: (keys: string | string[], callback?: () => void) => void;
+      get: (keys: string | string[] | null) => Promise<{ [key: string]: any }>;
+      set: (items: { [key: string]: any }) => Promise<void>;
+      remove: (keys: string | string[]) => Promise<void>;
     };
   };
   runtime: {
@@ -18,6 +21,16 @@ interface Chrome {
       message: string;
     };
   };
+}
+
+declare namespace chrome.tabs {
+  interface Tab {
+    id?: number;
+    url?: string;
+    title?: string;
+    active: boolean;
+    windowId: number;
+  }
 }
 
 declare global {

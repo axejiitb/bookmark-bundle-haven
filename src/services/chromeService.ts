@@ -2,8 +2,8 @@
 // Gets current tab information
 export const getCurrentTab = async (): Promise<chrome.tabs.Tab | null> => {
   try {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    return tab || null;
+    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    return tabs[0] || null;
   } catch (error) {
     console.error('Error getting current tab:', error);
     return null;
