@@ -1,5 +1,4 @@
 
-// Type definitions for Chrome extension API
 declare namespace chrome {
   namespace tabs {
     interface Tab {
@@ -33,5 +32,3 @@ declare namespace chrome {
     };
   }
 }
-
-// Chrome namespace is already globally available in extension contexts
