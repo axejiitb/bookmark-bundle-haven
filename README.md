@@ -1,58 +1,44 @@
-# Welcome to your Lovable project
+
+# Bookmark Bundle Chrome Extension
+
+Bookmark Bundle is a Chrome extension that helps you save and organize your bookmarks into categories.
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/2604b598-70a8-4738-8b64-9abcd5e884dc
 
-## How can I edit this code?
+## How to install the Chrome extension
 
-There are several ways of editing your application.
+### Development mode
+1. Clone this repository or download it as a ZIP file
+2. Install dependencies: `npm install`
+3. Build the extension: `npm run build`
+4. Open Chrome and navigate to `chrome://extensions/`
+5. Enable "Developer mode" using the toggle in the top-right corner
+6. Click "Load unpacked" and select the `dist` folder from this project
+7. The Bookmark Bundle extension should now appear in your Chrome toolbar
 
-**Use Lovable**
+### Using the extension
+- Click on the Bookmark Bundle icon in your Chrome toolbar to open the extension
+- Add new bookmarks by clicking the "Add current page" button or entering a URL manually
+- Create and manage categories to organize your bookmarks
+- Click on a bookmark to open it in a new tab
+- Delete bookmarks or categories as needed
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2604b598-70a8-4738-8b64-9abcd5e884dc) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Development
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+# Install dependencies
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
+
+# Build the extension
+npm run build
 ```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
+## Technologies used
 
 - Vite
 - TypeScript
@@ -60,10 +46,6 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Created with Lovable
 
-Simply open [Lovable](https://lovable.dev/projects/2604b598-70a8-4738-8b64-9abcd5e884dc) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This project was created with [Lovable](https://lovable.dev/projects/2604b598-70a8-4738-8b64-9abcd5e884dc).
