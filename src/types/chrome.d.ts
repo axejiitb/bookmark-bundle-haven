@@ -18,17 +18,20 @@ declare namespace chrome {
   }
   
   namespace storage {
-    namespace local {
-      function get(keys: string | string[] | null): Promise<{ [key: string]: any }>;
-      function set(items: { [key: string]: any }): Promise<void>;
-      function remove(keys: string | string[]): Promise<void>;
+    interface StorageArea {
+      get(keys: string | string[] | null): Promise<{ [key: string]: any }>;
+      set(items: { [key: string]: any }): Promise<void>;
+      remove(keys: string | string[]): Promise<void>;
     }
+    
+    const local: StorageArea;
   }
   
   namespace runtime {
     const id: string;
-    const lastError?: {
+    interface LastError {
       message: string;
-    };
+    }
+    const lastError: LastError | undefined;
   }
 }
