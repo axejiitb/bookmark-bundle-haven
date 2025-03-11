@@ -1,43 +1,38 @@
 
 // Type definitions for Chrome extension API
-interface Chrome {
-  tabs: {
-    query: (queryInfo: {
+declare namespace chrome {
+  namespace tabs {
+    interface Tab {
+      id?: number;
+      url?: string;
+      title?: string;
+      active: boolean;
+      windowId: number;
+    }
+    
+    function query(queryInfo: {
       active: boolean;
       currentWindow: boolean;
-    }) => Promise<chrome.tabs.Tab[]>;
-    create: (createProperties: { url: string }) => Promise<chrome.tabs.Tab>;
-  };
-  storage: {
-    local: {
-      get: (keys: string | string[] | null) => Promise<{ [key: string]: any }>;
-      set: (items: { [key: string]: any }) => Promise<void>;
-      remove: (keys: string | string[]) => Promise<void>;
-    };
-  };
-  runtime: {
-    id: string;
-    lastError?: {
+    }): Promise<Tab[]>;
+    
+    function create(createProperties: { url: string }): Promise<Tab>;
+  }
+  
+  namespace storage {
+    namespace local {
+      function get(keys: string | string[] | null): Promise<{ [key: string]: any }>;
+      function set(items: { [key: string]: any }): Promise<void>;
+      function remove(keys: string | string[]): Promise<void>;
+    }
+  }
+  
+  namespace runtime {
+    const id: string;
+    const lastError?: {
       message: string;
     };
-  };
-}
-
-declare namespace chrome.tabs {
-  interface Tab {
-    id?: number;
-    url?: string;
-    title?: string;
-    active: boolean;
-    windowId: number;
   }
 }
 
-declare global {
-  interface Window {
-    chrome: Chrome;
-  }
-  const chrome: Chrome;
-}
-
-export {};
+// No need to redeclare in global scope as the Chrome namespace
+// is already globally available in extension contexts

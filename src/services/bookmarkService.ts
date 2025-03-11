@@ -42,14 +42,14 @@ const initializeStorage = async (): Promise<void> => {
 // Get all bookmarks
 export const getBookmarks = async (): Promise<Bookmark[]> => {
   await initializeStorage();
-  const data = await chrome.storage.local.get(BOOKMARKS_KEY);
+  const data = await chrome.storage.local.get([BOOKMARKS_KEY]);
   return data[BOOKMARKS_KEY] || [];
 };
 
 // Get all categories
 export const getCategories = async (): Promise<Category[]> => {
   await initializeStorage();
-  const data = await chrome.storage.local.get(CATEGORIES_KEY);
+  const data = await chrome.storage.local.get([CATEGORIES_KEY]);
   return data[CATEGORIES_KEY] || defaultCategories;
 };
 
@@ -105,4 +105,26 @@ export const deleteCategory = async (id: string): Promise<void> => {
   );
   
   await chrome.storage.local.set({ [BOOKMARKS_KEY]: updatedBookmarks });
+};
+
+// Gets favicon for a URL
+export const getFaviconForUrl = (url: string): string => {
+  try {
+    const urlObj = new URL(url);
+    return `https://www.google.com/s2/favicons?domain=${urlObj.hostname}`;
+  } catch (error) {
+    console.error('Error getting favicon:', error);
+    return '';
+  }
+};
+
+// Gets current tab information
+export const getCurrentTab = async (): Promise<chrome.tabs.Tab | null> => {
+  try {
+    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    return tabs[0] || null;
+  } catch (error) {
+    console.error('Error getting current tab:', error);
+    return null;
+  }
 };
